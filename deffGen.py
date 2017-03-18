@@ -1,7 +1,7 @@
 import re
 import numpy as np
 
-from util import load_dataset, save_dataset1D
+from util import load_dataset
 
 dataArray = load_dataset('./dataset/name.data')
 dataTrainArray = load_dataset('./dataset/test.gender.nolabel.data')
@@ -23,9 +23,9 @@ for dataTrain in dataTrainArray:
 				if(len(data[0]) >= 3):
 					if(data[0].lower() == d.lower()):
 						if(data[1] == 'F'):
-							gender -= 1
+							gender -= int(data[2])
 						else:
-							gender += 1
+							gender += int(data[2])
 	
 	if(gender == 0):
 		for d2Name in d1Name:
@@ -36,14 +36,14 @@ for dataTrain in dataTrainArray:
 					if(len(data[0]) >= 3):
 						if(d.lower() in data[0].lower()):
 							if(data[1] == 'F'):
-								gender -= 1
+								gender -= int(data[2])
 							else:
-								gender += 1
+								gender += int(data[2])
 						elif(data[0].lower() in d.lower()):
 							if(data[1] == 'F'):
-								gender -= 1
+								gender -= int(data[2])
 							else:
-								gender += 1
+								gender += int(data[2])
 		
 	if gender > 0:
 		dataResult[i][0] = 'M'	
